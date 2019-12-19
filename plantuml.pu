@@ -1,0 +1,29 @@
+@startuml
+
+class models.User{
+name:string
+email:string
+password:string
+}
+
+class models.Game{
+Users_id:string
+score:integer
+}
+
+
+models.Users "1" *-- "1" models.Game
+
+
+class controllers.UserController{
+list()
+store()
+delete()
+}
+class controllers.GameController{
+list()
+store()
+delete()
+}
+
+@enduml
