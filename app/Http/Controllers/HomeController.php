@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Questions;
+use App\Answer;
 
 class HomeController extends Controller
 {
@@ -23,7 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        
+        $question=Questions::all();
+        //dd($question);
+        $answer=Answer::all();
+        return view('home',compact('question','answer'));
     }
     
 }

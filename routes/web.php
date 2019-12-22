@@ -18,8 +18,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/home/game','GameController@controlleranswer');
 
 //RUTA PARA ENVIAR LA RESPUESTA
+
+Route::post('/home/verification','GameController@verification');
 
 

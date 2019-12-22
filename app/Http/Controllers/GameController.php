@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use App\User;
 class GameController extends Controller{
 
-    function controlleranswer(REQUEST $request){
+    function verification(REQUEST $request){
         dd($request->question1);
         return ;
     }

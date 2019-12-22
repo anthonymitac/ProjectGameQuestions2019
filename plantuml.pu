@@ -1,26 +1,51 @@
 @startuml
 
-class models.User{
+class models.Users{
 name:string
 email:string
 password:string
 }
 
+class models.Questions{
+question:string
+level_id:string
+}
+
 class models.Game{
-Users_id:string
+id_Users:string
 score:integer
+}
+class models.Answer{
+name:string
+email:string
+password:string
 }
 
 
+
 models.Users "1" *-- "1" models.Game
+models.Questions "1" *-- "1" models.Answer
 
-
-class controllers.UserController{
+class controllers.GameController{
 list()
 store()
 delete()
 }
-class controllers.GameController{
+
+class controllers.QuestionsController{
+list()
+store()
+delete()
+}
+
+class controllers.AnswerController{
+list()
+store()
+delete()
+}
+
+
+class controllers.UsersController{
 list()
 store()
 delete()

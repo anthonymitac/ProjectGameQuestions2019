@@ -5,6 +5,9 @@
     </head>
 
     <body>
+        <script language="javascript">
+            alert('Mi primer alerta en Script');
+        </script>
         @extends('layouts.app')
 
         @section('content')
@@ -21,11 +24,47 @@
                                     {{ session('status') }}
                                 </div>
                             @endif
-                            <button onclick="window.location='home/levels/level1'" method='post'>
-                                <p class="titlelevel1">LEVEL 1</p>
+                    
+                            <label>
+                                @foreach ($question as $ques )
+                                    @if ($ques->id==1)
+                                        <h2>{{ $ques->questionname }}</h2>
+                                    @endif
+                                @endforeach
+                            </label>
+                            <form action="home/verification" method="POST" >
+                                {{ csrf_field() }}
+                                {{ method_field('PATCH') }}
+                                {{ method_field('POST') }}
+
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="hidden" name="_method" value="POST">
                                 
-                                <strong><p class="themelevel1">ALL UML</p></strong>
-                            </button>
+                                <p class="questions1">
+                                    <label class="answer">ALTERNATIVAS:
+                                        <br>
+                                        <br>
+                                        <input type="radio" name="question1" value="1"> Principio de Segregación de Interfaces.
+                                        <br>
+                                        <br>
+                                        <input type="radio" name="question1" value="2"> 
+                                                @foreach ($answer as $ans)
+                                                    @if ($ans->id==1)
+                                                        {{ $ans->answername }}
+                                                    @endif
+                                                @endforeach
+                                        <br>
+                                        <br>
+                                        <input type="radio" name="question1" value="3"> Principio de Sustitución de LisKov.
+                                        <br>
+                                        <br>
+                                        <input type="radio" name="question1" value="4"> Ninguno de los anteriores.
+                                        <br>
+                                        <br>
+                                    </label>
+                                </p>
+                                <input type="submit" value="Calificar"></p>
+                              </form>
                         </div>
                     </div>
                 </div>

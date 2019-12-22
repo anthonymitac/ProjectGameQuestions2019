@@ -12,8 +12,7 @@ class CreateGames extends Migration{
 			$table->integer('user_id')->unsigned();
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			//CONTAR LOS PUNTOS
-			$table->integer('score');
-			$table->timestamps();
+			$table->integer('score')->default(0);
 		});
  	} 
 	public function down(){
