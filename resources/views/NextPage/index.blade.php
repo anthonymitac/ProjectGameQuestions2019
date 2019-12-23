@@ -22,16 +22,16 @@
                                     {{ session('status') }}
                                 </div>
                             @endif
-                            <form action="home/startedGame"  method="POST">
+                            <form action="../../home/startedGame"  method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('PATCH') }}
                                 {{ method_field('POST') }}
 
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="_method" value="POST">
-                                <button name="question" value="1" class="buttonStarted" onclick="window.location='home/startedGame'">
+                                <button name="question" value="2" class="buttonStarted" >
                                 
-                                    STARTED QUESTION GAME
+                                    SIGUIENTE PREGUNTA
                                 </button>
                             </form>
                         </div>

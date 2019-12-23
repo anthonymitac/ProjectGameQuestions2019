@@ -9,6 +9,6 @@ class Questions extends Model{
     protected $primaryKey = 'id';
     protected $fillable = ['id','questionname','answer_id'];
 public function levels(){ 
-    return $this->belongsTo('App\Models\Levels');
+    return $this->belongsTo('App\Levels');
  }
 }

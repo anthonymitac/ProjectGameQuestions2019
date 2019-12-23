@@ -21,6 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //RUTA PARA ENVIAR LA RESPUESTA
 
-Route::post('/home/verification','GameController@verification');
+Route::post('/home/verification/{user_id}','GameController@verification');
+
+//RUTA PARA COMENZAR EL JUEGO
+Route::post('/home/startedGame','HomeController@startGame');
 
 

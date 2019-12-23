@@ -23,7 +23,7 @@ password:string
 
 
 
-models.Users "1" *-- "1" models.Game
+models.Users "*" *-- "1" models.Game
 models.Questions "1" *-- "1" models.Answer
 
 class controllers.GameController{

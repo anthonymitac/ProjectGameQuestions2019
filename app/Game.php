@@ -11,7 +11,7 @@ class Game extends Model{
     protected $fillable = ['id','user_id','score'];
 
 public function users(){ 
-    return $this->belongsTo('App\User'); 
+    return $this->hasMany('App\User'); 
 }
 
 }

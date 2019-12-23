@@ -11,6 +11,6 @@ class Answer extends Model{
     protected $fillable = ['id','answername'];
 
 public function questions(){ 
-    return $this->belongsTo('App\Models\Questions'); 
+    return $this->belongsTo('App\Questions'); 
 }
 }
