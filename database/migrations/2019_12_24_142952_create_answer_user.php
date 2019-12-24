@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAnswerTable extends Migration
+class CreateAnswerUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateAnswerTable extends Migration
      */
     public function up()
     {
-        Schema::create('answer', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->Increments('id');
-            $table->string('answername');
+        Schema::create('answer_user', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->bigInteger('answer_user');
         });
     }
 
@@ -27,6 +26,6 @@ class CreateAnswerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('answer');
+        Schema::dropIfExists('answer_user');
     }
 }

@@ -21,18 +21,17 @@
                                     {{ session('status') }}
                                 </div>
                             @endif
-                    <!-- ESTE FOREACH MUESTRA LA PRIMERA PREGUNTA -->
+                            <h1>PREGUNTA 3:</h1>
+                    <!-- ESTE FOREACH MUESTRA LA SEGUNDA PREGUNTA-->
                             <label>
                                 @foreach ($questionall as $ques )
-                                    @if ($ques->id==1)
-                                        <h2>{{ $ques->questionname }}</h2>
-                                    @endif
+                                    <h2>{{ $ques->questionname }}</h2>
                                 @endforeach
                             </label>
 
                             <!-- ESTE FORM ENVIA LAS RESPUESTAS AL CONTROLLADOR GAMECONTROLLER -->
                             
-                            <form action="../home/verification/{{ Auth::user()->id }}" method="POST" >
+                            <form action="../../../home/verification/{{ Auth::user()->id }}/{{ 4 }}" method="POST" >
                                 {{ csrf_field() }}
                                 {{ method_field('PATCH') }}
                                 {{ method_field('POST') }}
@@ -44,22 +43,20 @@
                                     <label class="answer">ALTERNATIVES:
                                         <br>
                                         <br>
-                                        <input type="radio" name="question" value="346465768"> Principio de Segregación de Interfaces.
+                                        <input type="radio" name="question" value="867"> Principio Abierto Cerrado.
                                         <br>
                                         <br>
-                                        <!-- HACEMOS UN RECORRIDO PARA MOSTRAR LA RESPUESTA DE LA PRIMERA PREGUNTA DE LA TABLA QUESTION   -->
-                                        <input type="radio" name="question" value="1"> 
+                                        <!-- HACEMOS UN RECORRIDO PARA MOSTRAR LA RESPUESTA DE LA SEGUNDA PREGUNTA DE LA TABLA QUUESTION   -->
+                                        <input type="radio" name="question" value="3"> 
                                                 @foreach ($answer as $ans)
-                                                    @if ($ans->id==1)
-                                                        {{ $ans->answername }}
-                                                    @endif
+                                                    {{ $ans->answername }}
                                                 @endforeach
                                         <br>
                                         <br>
-                                        <input type="radio" name="question" value="5575673"> Principio de Sustitución de LisKov.
+                                        <input type="radio" name="question" value="123"> Patrón de Separación de Preocupaciones/Responsabilidades.
                                         <br>
                                         <br>
-                                        <input type="radio" name="question" value="2342353"> Ninguno de los anteriores.
+                                        <input type="radio" name="question" value="929"> Patrón de no repetición(DRY).
                                         <br>
                                         <br>
                                     </label>

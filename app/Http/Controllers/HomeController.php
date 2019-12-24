@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Questions;
 use App\User;
 use App\Answer;
+use App\Game;
 
 class HomeController extends Controller
 {
@@ -26,31 +27,17 @@ class HomeController extends Controller
      */
     public function index()
     {
+        //$game=Game::all();
+        //dd($game);
         return view('home');
     }
 
     function startGame(REQUEST $request){
-        
-        $numQuestion = $request->question;
         //ENVIAR LOS DATOS DE LAS PREGUNTAS Y RESPUESTAS A LA  VISTA QUESTIONS
-        $questionall=Questions::all();
-        $answer=Answer::all();
-        //VERIFICAR EL NUMERO DE PREGUNTA
-        switch ($numQuestion){
-            case 1:
-                return view('Questions.question1',compact('questionall','answer'));
-            break;
-            case 2:
-                return view('Questions.question2',compact('questionall','answer'));
-            break;
-                
-            case 3:
-                return view('Questions.question3',compact('questionall','answer'));
-
-        }
+        $questionall=Questions::all()->where('id','=',1);
+        $answer=Answer::all()->where('id','=',1);
         
-
-        
+        return view('question1',compact('questionall','answer'));
     }
     
 }

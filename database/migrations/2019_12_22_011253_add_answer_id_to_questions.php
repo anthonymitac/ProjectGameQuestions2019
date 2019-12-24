@@ -14,6 +14,7 @@ class AddAnswerIdToQuestions extends Migration
     public function up()
     {
         Schema::table('questions', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->Integer('answer_id')->unsigned();
             $table->foreign('answer_id')->references('id')->on('answer')->onDelete('cascade');
         });

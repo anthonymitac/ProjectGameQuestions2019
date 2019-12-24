@@ -5,6 +5,7 @@ use App\User;
 use App\Game;
 use App\Questions;
 use App\Answer;
+use App\AnswerUser;
 class GameController extends Controller{
 
     public function __construct()
@@ -12,46 +13,93 @@ class GameController extends Controller{
         $this->middleware('auth');
     }
 
-    function verification(REQUEST $request,$user_id){        
-        //VERIFICAMOS SI LA RESPUESTA ES CORRECTA
-        $answer=Answer::find($request->question);
+    function verification(REQUEST $request,$user_id,$question){  
 
-        $recordGame=Game::all()->where('user_id','=',$user_id);
+        //VERIFICAMOS SI LA RESPUESTA ES CORRECTA, HACIENDO UNA CONSULTA
+        //EN LA BASE DE DATOS.
+        $answerrpta=Answer::find($request->question);
+
+        //VERIFICAMOS QUE EN LA BASE DE DATOS DE GAME
+        //SI EXISTE EL USUARIO O NO
+        $recordGame=Game::all()->where('user_id','=',$user_id)->first();
         
-        if (!empty($answer)){
-            if(!empty($recordGame)){
-                dd($recordGame);
-                // NO CREARA UN NUEVO REGISTRO EN LA TABLA GAME
-                
-                return  view('NextPage.index');
-            }
-            else{
-            //CREARA UN NUEVO REGISTRO EN LA TABLA GAME
+        //SACAMOS LA PREGUNTA PARA ENVIARLO
+        $questionall=Questions::all()->where('id','=',$question);
+
+        //SACAMOS LA RESPUESTA PARA LA PREGUNTA
+        $answer=Answer::all()->where('id','=',$question);
+        
+        //VEMOS Q SI LA RESPUESTA RECIBIDA ES CORRECTA O NO
+        if (!empty($answerrpta)){
+
+            if($recordGame==null){
+                //$GA="esta vacio";
+                //dd($GA);
+                // CREARA UN NUEVO REGISTRO EN LA TABLA GAME
+                //$rg->score=$rg->score + 1;
+                //$rg->save();
+
+                //dd($recordGame[0]->score);
                 $game= new Game;
                 $game->user_id=$user_id;
-                $game->score=0;
+                $game->score=1;
                 $game->save();        
-                return  view('NextPage.index');
             }
+            elseif($recordGame!=null &&  $question == 2){
+                //dd("sdlsn");
+                $rg=Game::find($recordGame->id);
+                $rg->score=1;
+                $rg->save();
+            }
+            else{
+                //EDITARA LA TABLA GAME DEL USUARIO CON ELL CODIGO $user_id
+                //SIEMPRE EN CUANDO EXISTA UN REGISTRO DE ESE USUARIO
+                //sacamos el id del registro (game)
+                $indexGame=$recordGame->id;
+                //buscamos ese registro del game
+                $rg=Game::find($indexGame);
+                //dd($recordGame->id);
+                //dd($rg);
+                $rg->score=$rg->score+1;
+                //dd($rg->score);
+                //$rg = $recordGame[0];
+                $rg->save();
+            }
+            
         }
         
         //SI NO EXISTE UN REGISTRO DEL JUGADOR
         else{
+            //dd($request->question);
             if (empty($recordGame)){
                 //CREAMOS UN REGISTRO DE ESE JUGADOR AUNQUE LA RESPUESTA AYA ESTADO INCORRECTO
                 $game= new Game;
                 $game->user_id=$user_id;
-                $game->score=$score;
+                $game->score=0;
                 $game->save();
                 //REENVIAMOS A NEXTPAGE
-                return  view('NextPage.index');
             }
-            else{
-                dd($recordGame->pluck('score'));
+            else{              
             }
-        }
 
-       //REENVIAMOS A NEXTPAGE
-       return  view('NextPage.index');
+        }
+        switch ($question){
+            case 1:
+                return view('question1',compact('questionall','answer'));
+            break;
+            case 2:
+                return view('question2',compact('questionall','answer'));
+            break;
+            case 3:
+                return view('question3',compact('questionall','answer'));
+            break;
+            case 4:
+                return view('question4',compact('questionall','answer'));
+            break;
+            case 5:
+                return view('question5',compact('questionall','answer'));
+            break;
+
+        }
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateGames extends Migration{
 	public function up(){ 
  		Schema::create('game', function (Blueprint $table) { 
+			$table->engine = 'InnoDB';
 			$table->bigIncrements('id');
 			//LLAVE FORANEA DEL USUARIO
 			$table->integer('user_id')->unsigned();

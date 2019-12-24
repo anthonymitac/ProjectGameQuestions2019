@@ -7,6 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateQuestionss extends Migration{
 	public function up(){ 
  		Schema::create('questions', function (Blueprint $table) { 
+			$table->engine = 'InnoDB';
 			$table->bigIncrements('id');
 			$table->text('questionname',300);
 		});
