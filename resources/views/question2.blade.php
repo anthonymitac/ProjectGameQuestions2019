@@ -30,15 +30,13 @@
                             </label>
 
                             <!-- ESTE FORM ENVIA LAS RESPUESTAS AL CONTROLLADOR GAMECONTROLLER -->
-                            
-                            <form action="../../../home/verification/{{ Auth::user()->id }}/{{ 3 }}" method="POST" >
+
+                            <form action="/home/verification/{{ Auth::user()->id }}/3" method="POST" >
                                 {{ csrf_field() }}
                                 {{ method_field('PATCH') }}
                                 {{ method_field('POST') }}
 
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="hidden" name="_method" value="POST">
-                                
+
                                 <p class="questions1">
                                     <label class="answer">ALTERNATIVES:
                                         <br>
@@ -50,7 +48,7 @@
                                         <br>
                                         <br>
                                         <!-- HACEMOS UN RECORRIDO PARA MOSTRAR LA RESPUESTA DE LA SEGUNDA PREGUNTA DE LA TABLA QUUESTION   -->
-                                        <input type="radio" name="question" value="2"> 
+                                        <input type="radio" name="question" value="2">
                                                 @foreach ($answer as $ans)
                                                     {{ $ans->answername }}
                                                 @endforeach
@@ -61,7 +59,8 @@
                                         <br>
                                     </label>
                                 </p>
-                                <input type="submit" value="ENVIAR"></p>
+                                <input type="submit" value="ENVIAR">
+                            </p>
                               </form>
                         </div>
                     </div>
@@ -69,6 +68,6 @@
             </div>
         </div>
         @endsection
-        
+
     </body>
 </html>

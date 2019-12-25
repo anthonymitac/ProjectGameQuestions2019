@@ -5,7 +5,7 @@
     </head>
 
     <body>
-    
+
         @extends('layouts.app')
 
         @section('content')
@@ -22,22 +22,22 @@
                                     {{ session('status') }}
                                 </div>
                             @endif
-                            <form action="home/startedGame"  method="POST">
+                            <form action="/home/startedGame"  method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('PATCH') }}
                                 {{ method_field('POST') }}
 
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="_method" value="POST">
-                                <button name="question" value="1" class="buttonStarted" onclick="window.location='home/startedGame'">
+                                <button name="question" value="1" class="buttonStarted">
                                     STARTED QUESTIONS GAME
                                 </button>
 
 
                                 <!-- MOSTRAREMOS LA LISTA DE LOS USUARIOS EN ORDEN DE LOS PUNTOS DE -->
                                 <!-- DE MAYOR A MENOR -->
-                                
-                                
+
+
                             </form>
                         </div>
                     </div>
@@ -45,6 +45,6 @@
             </div>
         </div>
         @endsection
-        
+
     </body>
 </html>

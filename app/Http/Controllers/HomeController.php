@@ -34,10 +34,10 @@ class HomeController extends Controller
 
     function startGame(REQUEST $request){
         //ENVIAR LOS DATOS DE LAS PREGUNTAS Y RESPUESTAS A LA  VISTA QUESTIONS
-        $questionall=Questions::all()->where('id','=',1);
-        $answer=Answer::all()->where('id','=',1);
-        
-        return view('question1',compact('questionall','answer'));
+        $questionall=Questions::select('questionname')->where('id','=',1)->get();
+        $answers=Answer::all();
+
+        return view('question1',compact('questionall','answers'));
     }
-    
+
 }
